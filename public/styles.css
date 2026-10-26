@@ -18,6 +18,12 @@
 *:focus {
   outline: none!important; 
 }
+
+h1,h2{
+  display: flex;
+  justify-content: center;
+}
+
 input{
   user-select: text;
 }

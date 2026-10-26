@@ -1,0 +1,18 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html{
+  min-height: 100%;
+}
+
+body{
+ background-image: url(travel2.jpg);
+ background-repeat: no-repeat;
+ background-size: cover;
+ color: green;
+ min-height: 100vh;
+ 
+}
+

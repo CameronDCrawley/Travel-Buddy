@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Travel Buddy</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Where We Going Next?</h1>
+  <h2>Travel Buddy</h2>
+
+
+<div class="container">
+  <% [0,1,2].forEach(function(col) { %>
+  <div class="col">
+
+    <% trips.forEach(function(p,i) { %>
+      <% if (i%3 === col) { %>
+    <div class="card-container">
+      <div class="overlay"></div>
+      <div class="overlay"></div>
+      <div class="overlay"></div>
+      <div class="overlay"></div>
+      <div class="card" style="--img: url('<%= p.image %>');">
+
+        <h4> <%= p.places %></h4>
+        <p><%= p.date %> | Budget:<%= p.budget %></p>
+         <p>Group:<%= p.group %></p>
+         <span>Itinerary:<%= p.itinerary %> </span>
+        <span class="chev">&rsaquo;</span>
+        
+      </div>
+      <div class="btnFix">
+        <button class="bookBtn"data-id="<%= p._id %>">Booked Trip</button>
+      </div>
+      <div class="itiFix">
+        <input class="itiInput" type="text" placeholder="Add Activity">
+        <button class="itiBtn" data-id="<%= p._id%>">Activity </button>
+      </div>
+    </div>
+    <% } %>
+    <% } ) %>
+  </div>
+  <% }) %>
+</div>
+    
+
+
+
+
+  
+
+
+  <section class="cardCon">
+ <section class="cardTwo">
+<form action="/addTrip" method="post">
+  <p> Add Trip</p>
+    <ul>
+       <li>
+    <label for="addImage">Image:</label>
+    <input type="text" id="addImage" name="image" placeholder="Would Love To See It" required>
+    </li>
+        <li>
+    <label for="addPlaces">Destination:</label>
+    <input type="text" id="addPlaces" name="places" placeholder="Destination" required>
+    </li>
+
+    <li>
+
+    <label for="addDate">Date:</label>
+    <input type="text" id="addDate" name="date" placeholder="date" required>
+    </li>
+
+    <li>
+
+    <label for="addBudget">Budget:</label>
+    <input type="text" id="addBudget" name="budget" placeholder="Expenses" required>
+    </li>
+<li>
+    <label for="addGroup">Group:</label>
+    <input type="text" id="addGroup" name="group" placeholder="Who Is Going" required>
+
+    </li>
+
+     <li>
+    <label for="addItinerary">Itinerary:</label>
+    <input type="text" id="addItinerary" name="itinerary" placeholder="add an activity" required>
+    
+    </li>
+
+    </ul>
+     <button type="submit" class="tripBtn">Submit Trip</button>
+
+</form>
+
+    </section>
+  </section>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/Draggable.min.js"></script>
+  <script src="/main.js"></script>
+
+</body>
+</html>

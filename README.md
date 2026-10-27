@@ -81,7 +81,7 @@ Passport.js (Local Authentication)
 
 Express Session & Connect Flash
 
-EJS (Embedded JavaScript Templating)
+EJS 
 
 HTML5 & CSS3 (Pure CSS 3D Cards)
 

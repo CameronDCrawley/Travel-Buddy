@@ -5,7 +5,7 @@
   <title>Travel Buddy</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-guest="<%= isGuest ? 'true' : 'false' %>">
   <h1>Where We Going Next?</h1>
   <h2>Travel Buddy</h2>
 
@@ -95,6 +95,12 @@
 
     </section>
   </section>
+  <dialog id="guestPopup">
+  <h3> Full account needed</h3>
+  <p>Guests can look around, but you need an account to do that</p>
+  <a href="/signup"> Sign Up </a>
+  <button type="button" id="closePopup">Close</button>
+</dialog>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/Draggable.min.js"></script>
   <script src="/main.js"></script>

@@ -1,10 +1,26 @@
 
 let booked = document.querySelectorAll(".bookBtn")
 let itinerary = document.querySelectorAll(".itiBtn")
-const images = [
-  
-  "https://yucatanmagazine.com/wp-content/uploads/2021/07/ChichenItza030-1024x747.jpg"
-]
+
+const isGuest = document.body.dataset.guest === 'true'
+const popup = document.getElementById('guestPopup')
+
+const blocked = '.itiBtn, .bookBtn , .tripBtn'
+
+document.getElementById('closePopup').addEventListener('click', ()=> popup.close())
+
+if (isGuest) {
+  document.addEventListener('click',function(e){
+    if (e.target.closest(blocked)){
+      e.preventDefault()
+      e.stopImmediatePropagation()
+      popup.showModal()
+
+    }
+  }, true)
+}
+
+
 
 Array.from(itinerary).forEach(function (element) {
   element.addEventListener("click", function (btn) {

@@ -8,6 +8,7 @@ const passport= require('passport')
 const cors = require('cors')
 const PORT = 8000
 const Trip = require('./app/models/Trips')
+const User = require('./app/models/User')
 require('./config/passport')(passport)
 module.exports = function(app, passport){
 
@@ -98,7 +99,7 @@ app.use((req,res,next)=>{
 app.get('/', isLoggedIn, async (request, response)=>{
    let trips = await Trip.find({})
    console.log(trips)
-     response.render('index.ejs',{trips})
+     response.render('index.ejs',{trips, isGuest: request.user.guest})
 
 })
 app.get('/api/Trip', async (request, response)=>{
@@ -112,7 +113,7 @@ let trips = await Trip.find()
 
 
 
-app.post('/addTrip', (req, res) => {
+app.post('/addTrip' ,isLoggedIn,notGuest,(req, res) => {
   Trip.create(
 {   image:req.body.image,
     places: req.body.places, 
@@ -132,7 +133,7 @@ app.post('/addTrip', (req, res) => {
 })
 
 
-app.put('/addActivity', async(req, res) => {
+app.put('/addActivity' ,isLoggedIn,notGuest,async(req, res) => {
 const {id,activity}  = req.body 
 console.log(activity)
  const result = await Trip.findByIdAndUpdate(
@@ -146,7 +147,7 @@ console.log(activity)
   })
 
 
-app.delete('/booked', (req, res) => {
+app.delete('/booked',isLoggedIn,notGuest, (req, res) => {
     console.log(req.body.id)
     Trip.findByIdAndDelete(
         req.body.id)

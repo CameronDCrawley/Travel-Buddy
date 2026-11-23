@@ -78,6 +78,15 @@ app.use((req,res,next)=>{
             failureRedirect : '/signup', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));
+        app.post('/guest', async (req,res,next)=> {
+            try{
+                const guest = await User.create({guest:true})
+                req.login(guest, err => err ? next(err) :res.redirect('/'))
+            }catch(err){
+                next(err)
+            }
+        })
+
 
 // =============================================================================
 // UNLINK ACCOUNTS =============================================================
@@ -172,3 +181,10 @@ function isLoggedIn(req, res, next) {
     res.redirect('/login');
 
 }
+
+function notGuest(req,res,next){
+    if(req.user && req.user.guest)
+        return res.status(403).json('Full account needed')
+    next()
+}
+
